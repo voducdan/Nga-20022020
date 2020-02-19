@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Nga - 20/02/2020</title>
+</head>
+
+<body>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/qtEh7--fHIM?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen hidden></iframe>
+    <div id="count">
+        <h1 id="number"></h1>
+    </div>
+    <div id="happy">
+        <h1>Happy Birthday</h1>
+        <canvas id="birthday"></canvas>
+    </div>
+    <div id="cube">
+        <div class='change-style'><a href="#" class="classname" onclick="toggleShape()">Change stlye</a></div>
+
+        <div id="container">
+            <div id="stage">
+                <div id="shape" class="cube backfaces">
+                    <div class="plane one"></div>
+                    <div class="plane two"></div>
+                    <div class="plane three"></div>
+                    <div class="plane four"></div>
+                    <div class="plane five"></div>
+                    <div class="plane six"></div>
+                    <div class="plane seven"></div>
+                    <div class="plane eight"></div>
+                    <div class="plane nine"></div>
+                    <div class="plane ten"></div>
+                    <div class="plane eleven"></div>
+                    <div class="plane twelve"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="typewriter" id="typewriter">
+        <p>
+            Chúc mừng sinh nhật người yêu nhất của anh
+        </p>
+        <p>
+            Cuộc sống buồn tẻ biết bao nếu vắng em
+        </p>
+        <p>Gặp em chính là điều may mắn nhất đời anh</p>
+        <p>Anh đi qua biết bao thăng trầm trong cuộc sống</p>
+        <p>Và em, là số ít người còn lại bên anh</p>
+        <p>Dù 1 năm, 5 năm hay 10 năm nửa</p>
+        <p>Hy vọng em vẫn sẽ mãi bên anh</p>
+    </div>
+    <script src="./javascript.js"></script>
+</body>
+
+</html>
+<script>
+    const number = document.querySelector('#number')
+    const happy = document.querySelector('#happy')
+    const cube = document.querySelector('#cube')
+    const typewriter = document.querySelector('#typewriter')
+
+    console.log(number)
+    let count = 5
+    let interval = setInterval(() => {
+        number.innerHTML = count
+        count--
+        if (count === -1) {
+            clearInterval(interval)
+            number.style.display = 'none'
+            happy.style.display = 'block'
+            cube.style.display = 'block'
+        }
+    }, 1000)
+    setTimeout(() => {
+        typewriter.style.display = 'block'
+    }, 6000)
+
+</script>
+<script type="text/javascript" charset="utf-8">
+
+    function hasClassName(inElement, inClassName) {
+        var regExp = new RegExp('(?:^|\\s+)' + inClassName + '(?:\\s+|$)');
+        return regExp.test(inElement.className);
+    }
+
+    function addClassName(inElement, inClassName) {
+        if (!hasClassName(inElement, inClassName))
+            inElement.className = [inElement.className, inClassName].join(' ');
+    }
+
+    function removeClassName(inElement, inClassName) {
+        if (hasClassName(inElement, inClassName)) {
+            var regExp = new RegExp('(?:^|\\s+)' + inClassName + '(?:\\s+|$)', 'g');
+            var curClasses = inElement.className;
+            inElement.className = curClasses.replace(regExp, ' ');
+        }
+    }
+
+    function toggleClassName(inElement, inClassName) {
+        if (hasClassName(inElement, inClassName))
+            removeClassName(inElement, inClassName);
+        else
+            addClassName(inElement, inClassName);
+    }
+
+    function toggleShape() {
+        var shape = document.getElementById('shape');
+        if (hasClassName(shape, 'ring')) {
+            removeClassName(shape, 'ring');
+            addClassName(shape, 'cube');
+        } else {
+            removeClassName(shape, 'cube');
+            addClassName(shape, 'ring');
+        }
+
+        var stage = document.getElementById('stage');
+        if (hasClassName(shape, 'ring'))
+            stage.style.webkitTransform = 'translateZ(-200px)';
+        else
+            stage.style.webkitTransform = '';
+    }
+</script>
